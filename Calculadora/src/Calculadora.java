@@ -19,7 +19,8 @@ public class Calculadora{
 	public void Calcular() {
 		/*------------Separacion del String en Tokens--------------*/
 		String Operacion = setOperacion();
-		StringTokenizer st = new StringTokenizer(Operacion,"+-*/",true);  //Creamos Tokens que se separan con los operandos.      
+		StringTokenizer st = new StringTokenizer(Operacion,"+-*%",true);  //Creamos Tokens que se separan con los operandos.      
+
 		
 		/*------------Separacion de Tokens en num y oper------------*/	
 		int inum=0;
@@ -61,8 +62,9 @@ public class Calculadora{
 				resultado*=num.elementAt(i+1);
 				//System.out.println(resultado);
 			}
-			else if(oper.elementAt(i).compareTo("/")==0){                   //Si el operador es "*".
-				resultado/=num.elementAt(i+1);
+
+			else if(oper.elementAt(i).compareTo("%")==0){                   //Si el operador es "%".
+				resultado/=num.elementAt(i+1)/100;
 				//System.out.println(resultado);
 			}
 			i++;
