@@ -19,7 +19,7 @@ public class Calculadora{
 	public void Calcular() {
 		/*------------Separacion del String en Tokens--------------*/
 		String Operacion = setOperacion();
-		StringTokenizer st = new StringTokenizer(Operacion,"+-*",true);  //Creamos Tokens que se separan con los operandos.      
+		StringTokenizer st = new StringTokenizer(Operacion,"+-*%",true);  //Creamos Tokens que se separan con los operandos.      
 		
 		/*------------Separacion de Tokens en num y oper------------*/	
 		int inum=0;
@@ -30,13 +30,13 @@ public class Calculadora{
 					                                                     //los toquens.
 		while (st.hasMoreTokens()){                                      //Mientras haya tokens.
 			if(esnum){                                                   //Separamos numeros.     
-				num.add(Integer.parseInt(st.nextToken()));
+				num.add(Integer.parseInt(st.nextToken()));               //agrego numero al vector(convierto numero a int(tomo el next token)))
 				//System.out.println(inum + "->" + num[inum]);
 				esnum=false;
 				inum++;
 			}
 			else{                                                        //Separamos operadores.
-				oper.add(st.nextToken());
+				oper.add(st.nextToken());                                //agrego String al vector(tomo el next token))
 				//System.out.println(ioper + "->" + oper[ioper]);
 				esnum=true;
 				ioper++;
@@ -45,7 +45,7 @@ public class Calculadora{
 		
 		/*--------------------Operacion--------------------*/
 		int i=0;
-		int resultado;
+		double resultado;
 		resultado=num.elementAt(0);                                         //resultado toma el valor del 1º valor ingresado.
 		
 		while(ioper!=0){	
@@ -59,6 +59,10 @@ public class Calculadora{
 			}
 			else if(oper.elementAt(i).compareTo("*")==0){                   //Si el operador es "*".
 				resultado*=num.elementAt(i+1);
+				//System.out.println(resultado);
+			}
+			else if(oper.elementAt(i).compareTo("%")==0){                   //Si el operador es "%".
+				resultado/=num.elementAt(i+1)/100;
 				//System.out.println(resultado);
 			}
 			i++;
